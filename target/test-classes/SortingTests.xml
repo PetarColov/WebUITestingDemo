@@ -1,0 +1,12 @@
+<suite name="SortingTestSuite">
+    <test name="SortingTests">
+        <groups>
+            <run>
+                <include name="sorting"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.FunctionalityTests"/>
+        </classes>
+    </test>
+</suite>

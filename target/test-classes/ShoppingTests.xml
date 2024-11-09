@@ -1,0 +1,12 @@
+<suite name="ShoppingTestSuite">
+    <test name="ShoppingTests">
+        <groups>
+            <run>
+                <include name="shopping"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.FunctionalityTests"/>
+        </classes>
+    </test>
+</suite>
