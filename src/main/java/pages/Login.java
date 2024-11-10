@@ -11,7 +11,6 @@ public class Login extends BasePage{
 
     public Login(WebDriver driver) {
         super(driver);
-//        this.driver = driver;
     }
 
     public void login(String username, String password){

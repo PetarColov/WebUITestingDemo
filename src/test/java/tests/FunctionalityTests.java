@@ -1,52 +1,29 @@
 package tests;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import contexts.CheckoutInfoData;
 import enums.AppMenu;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FunctionalityTests extends BaseTest{
-    ExtentReports extent;
-    ExtentTest extentTest;
     String username = "standard_user";
     String pass = "secret_sauce";
-
-    @BeforeClass(alwaysRun = true)
-    public void beforeClass(){
-        ExtentSparkReporter htmlReporter = new ExtentSparkReporter ("extentReport.html");
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void setUp(Method method){
-        extentTest = extent.createTest(method.getName());
-        extentTest.info("Starting test: " + method.getName());
-    }
-
+    String firstProduct = "Sauce Labs Backpack";
+    String lastProduct = "Test.allTheThings() T-Shirt (Red)";
+    String previousToTheLastItem = "Sauce Labs Onesie";
+    String sortByPriceHiLo = "Price (high to low)";
 
     @Test(groups = {"shopping"})
     public void testShoppingFunctionalities(){
         extentTest.info("Shopping functionalities");
         new Login(driver).login(username, pass);
-
-        String firstProduct = "Sauce Labs Backpack";
-        String lastProduct = "Test.allTheThings() T-Shirt (Red)";
 
         new Products(driver)
                 .add(firstProduct)
@@ -58,7 +35,6 @@ public class FunctionalityTests extends BaseTest{
                 .isProductInCart(lastProduct)
                 .remove(firstProduct);
 
-        String previousToTheLastItem = "Sauce Labs Onesie";
         new Cart(driver)
                 .continueShopping()
                 .add(previousToTheLastItem);
@@ -98,10 +74,9 @@ public class FunctionalityTests extends BaseTest{
         extentTest.info("Sorting functionalities");
         new Login(driver)
                 .login(username, pass);
-        String sortBy = "Price (high to low)";
 
         List<WebElement> listedProducts = new Products(driver)
-                .sort(sortBy)
+                .sort(sortByPriceHiLo)
                 .getListedProducts();
 
         List<Double> pricesAfterSort = new ArrayList<>();
@@ -116,14 +91,5 @@ public class FunctionalityTests extends BaseTest{
         new Header(driver)
                 .navigateToMenu(AppMenu.LOGOUT);
         extentTest.pass("Sorting functionalities successful");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeBrowser(ITestResult result){
-        if(!result.isSuccess()){
-            extentTest.fail(result.getMethod().getMethodName() + " failed");
-        }
-        driver.close();
-        extent.flush();
     }
 }
