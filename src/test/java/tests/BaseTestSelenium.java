@@ -15,7 +15,7 @@ import utilities.DriverFactory;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
-public abstract class BaseTest {
+public abstract class BaseTestSelenium {
     ExtentReports extent;
     ExtentTest extentTest;
     WebDriver driver;

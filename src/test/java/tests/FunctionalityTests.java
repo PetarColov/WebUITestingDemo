@@ -12,7 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FunctionalityTests extends BaseTest{
+public class FunctionalityTests extends BaseTestSelenium{
     String username = "standard_user";
     String pass = "secret_sauce";
     String firstProduct = "Sauce Labs Backpack";
