@@ -1,4 +1,4 @@
-package tests;
+package SeleniumTests;
 
 import contexts.CheckoutInfoData;
 import enums.AppMenu;

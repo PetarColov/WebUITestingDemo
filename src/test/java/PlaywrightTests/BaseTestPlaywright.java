@@ -1,4 +1,4 @@
-package tests;
+package PlaywrightTests;
 
 public class BaseTestPlaywright {
 }

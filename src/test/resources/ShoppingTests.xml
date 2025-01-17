@@ -6,7 +6,7 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.FunctionalityTests"/>
+            <class name="SeleniumTests.FunctionalityTests"/>
         </classes>
     </test>
 </suite>
